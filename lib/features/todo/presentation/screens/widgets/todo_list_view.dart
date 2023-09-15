@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/domain.dart';
 import 'todo_item/todo_item.dart';
 
 class TodoListView extends StatelessWidget {
-  const TodoListView({super.key});
+  const TodoListView(
+    this.todos, {
+    super.key,
+  });
+
+  final List<Todo> todos;
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [
-        TodoItem(),
-        TodoItem(),
-        TodoItem(),
-        TodoItem(),
-      ],
+      children: todos.map((todo) => TodoItem(todo: todo)).toList(),
     );
   }
 }

@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../../../../domain/domain.dart';
 import 'check_box.dart';
 import 'delete_button.dart';
 
 class TodoItem extends StatelessWidget {
-  const TodoItem({super.key});
+  const TodoItem({
+    required this.todo,
+    super.key,
+  });
 
+  final Todo todo;
+
+  static const _height = 80.0;
   static const _padding = EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0);
 
   @override
   Widget build(BuildContext context) {
+    final textDecoration = todo.isCompleted ? TextDecoration.lineThrough : TextDecoration.none;
+
     return SizedBox(
-      height: 80,
+      height: _height,
       child: Padding(
         padding: _padding,
         child: Card(
@@ -23,14 +32,17 @@ class TodoItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: CheckBox(
-                  initialValue: false,
+                  initialValue: todo.isCompleted,
                   onChanged: (value) {},
                 ),
               ),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  'Todo item',
-                  style: TextStyle(fontSize: 17.0),
+                  todo.title,
+                  style: TextStyle(
+                    fontSize: 17.0,
+                    decoration: textDecoration,
+                  ),
                 ),
               ),
               DeleteButton(

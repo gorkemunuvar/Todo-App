@@ -1,2 +1,2 @@
-export 'cubit/todo_cubit_cubit.dart';
+export 'cubit/todo_cubit.dart';
 export 'screens/screens.dart';

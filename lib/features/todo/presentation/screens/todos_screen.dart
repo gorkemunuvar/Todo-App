@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../domain/domain.dart';
 import 'widgets/widgets.dart';
 
 class TodoScreen extends StatelessWidget {
@@ -12,7 +13,15 @@ class TodoScreen extends StatelessWidget {
         title: const Center(child: Text('Todos')),
       ),
       backgroundColor: Colors.grey[300],
-      body: const TodoListView(),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          const Expanded(child: TodoListView([])),
+          CreateTodoField(onCreateButtonPressed: _onCreateButtonPressed),
+        ],
+      ),
     );
   }
+
+  void _onCreateButtonPressed(String text) {}
 }
