@@ -2,11 +2,15 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/errors.dart';
-import '../entities/todo_entity.dart';
+import '../../todo.dart';
 
 @injectable
 class CreateTodoUseCase {
+  const CreateTodoUseCase(this._repository);
+
+  final ITodoRepository _repository;
+
   Future<Either<Failure, Success>> call(Todo todo) async {
-    return const Right(Success());
+    return _repository.createTodo(todo);
   }
 }

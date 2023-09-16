@@ -5,8 +5,7 @@ import 'hive_client.dart';
 
 @Injectable(as: IStorageClient)
 class HiveClient implements IStorageClient {
-  @override
-  Future<void> init() async {
+  static Future<void> init() async {
     await Hive.initFlutter();
   }
 

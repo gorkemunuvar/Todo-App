@@ -12,13 +12,18 @@
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
-import '../../features/todo/domain/usecases/create_todo_usecase.dart' as _i3;
-import '../../features/todo/domain/usecases/delete_todo_usecase.dart' as _i4;
-import '../../features/todo/domain/usecases/get_todos_usecase.dart' as _i5;
+import '../../features/todo/data/repositories/todo_repository.dart' as _i6;
+import '../../features/todo/domain/domain.dart' as _i5;
+import '../../features/todo/domain/repositories/todo_repository.dart' as _i12;
+import '../../features/todo/domain/usecases/create_todo_usecase.dart' as _i8;
+import '../../features/todo/domain/usecases/delete_todo_usecase.dart' as _i10;
+import '../../features/todo/domain/usecases/get_todos_usecase.dart' as _i11;
 import '../../features/todo/domain/usecases/update_todo_status_usecase.dart'
-    as _i6;
-import '../../features/todo/presentation/cubit/todo_cubit.dart' as _i7;
-import '../../features/todo/todo.dart' as _i8;
+    as _i7;
+import '../../features/todo/presentation/cubit/todo_cubit.dart' as _i13;
+import '../../features/todo/todo.dart' as _i9;
+import '../storage/hive_client.dart' as _i3;
+import '../storage/storage.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
@@ -31,15 +36,21 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.CreateTodoUseCase>(() => _i3.CreateTodoUseCase());
-  gh.factory<_i4.DeleteTodoUseCase>(() => _i4.DeleteTodoUseCase());
-  gh.factory<_i5.GetTodosUseCase>(() => _i5.GetTodosUseCase());
-  gh.factory<_i6.UpdateTodoStatusUseCase>(() => _i6.UpdateTodoStatusUseCase());
-  gh.factory<_i7.TodoCubit>(() => _i7.TodoCubit(
-        gh<_i8.GetTodosUseCase>(),
-        gh<_i8.CreateTodoUseCase>(),
-        gh<_i8.DeleteTodoUseCase>(),
-        gh<_i8.UpdateTodoStatusUseCase>(),
+  gh.factory<_i3.IStorageClient>(() => _i4.HiveClient());
+  gh.factory<_i5.ITodoRepository>(() => _i6.TodoRepository());
+  gh.factory<_i7.UpdateTodoStatusUseCase>(
+      () => _i7.UpdateTodoStatusUseCase(gh<_i5.ITodoRepository>()));
+  gh.factory<_i8.CreateTodoUseCase>(
+      () => _i8.CreateTodoUseCase(gh<_i9.ITodoRepository>()));
+  gh.factory<_i10.DeleteTodoUseCase>(
+      () => _i10.DeleteTodoUseCase(gh<_i5.ITodoRepository>()));
+  gh.factory<_i11.GetTodosUseCase>(
+      () => _i11.GetTodosUseCase(gh<_i12.ITodoRepository>()));
+  gh.factory<_i13.TodoCubit>(() => _i13.TodoCubit(
+        gh<_i9.GetTodosUseCase>(),
+        gh<_i9.CreateTodoUseCase>(),
+        gh<_i9.DeleteTodoUseCase>(),
+        gh<_i9.UpdateTodoStatusUseCase>(),
       ));
   return getIt;
 }

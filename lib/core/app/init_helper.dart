@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'bloc_observer.dart';
+
 import '../injection/injection.dart';
 import '../logger/logger.dart';
+import '../storage/storage.dart';
+import 'bloc_observer.dart';
 
 ///Initializes all dependencies and configurations.
 Future<void> initDependencies() async {
@@ -10,4 +12,5 @@ Future<void> initDependencies() async {
   AppLogger.init();
   configureDependencies();
   Bloc.observer = TodoAppBlocObserver();
+  HiveClient.init();
 }

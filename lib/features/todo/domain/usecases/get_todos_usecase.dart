@@ -3,33 +3,15 @@ import 'package:injectable/injectable.dart';
 
 import '../../../../core/errors/errors.dart';
 import '../entities/todo_entity.dart';
+import '../repositories/todo_repository.dart';
 
 @injectable
 class GetTodosUseCase {
+  const GetTodosUseCase(this._repository);
+
+  final ITodoRepository _repository;
+
   Future<Either<Failure, List<Todo>>> call() async {
-    return const Right(_mockTodos);
+    return _repository.getTodos();
   }
 }
-
-const _mockTodos = [
-  Todo(
-    id: '1',
-    title: 'Todo 1',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '2',
-    title: 'Todo 2',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '3',
-    title: 'Todo 3',
-    isCompleted: true,
-  ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-];
