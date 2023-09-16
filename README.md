@@ -5,6 +5,10 @@ Simple Todo app with Clean Architecture.
 
 ## Screen Record
 
+
+https://github.com/gorkemunuvar/Todo-App/assets/34106700/c8851b13-3092-4186-9187-9767701bd530
+
+
 ## How to run
 
 In order to run the project, run the commands below in order.
@@ -38,6 +42,7 @@ The presentation layer is responsible for displaying data to the user and handli
 
 ### Overview of the todo feature
 
+![todo_arc](https://github.com/gorkemunuvar/Todo-App/assets/34106700/094e6f1d-3570-4425-b1bf-51dccc937f7a)
 
 
 
