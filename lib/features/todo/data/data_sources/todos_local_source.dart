@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import '../../../../core/app/init_helper.dart';
 
-import '../../../../core/storage/objectbox_client.dart';
 import '../models/models.dart';
 
 abstract interface class ITodosLocalSource {
@@ -13,10 +12,6 @@ abstract interface class ITodosLocalSource {
 
 @Injectable(as: ITodosLocalSource)
 class TodosLocalSource implements ITodosLocalSource {
-  TodosLocalSource(this._storageClient);
-
-  final IStorageClient _storageClient;
-
   final _box = objectBox.store.box<TodoModel>();
 
   @override
