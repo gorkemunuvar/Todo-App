@@ -59,13 +59,13 @@ class TodoItem extends StatelessWidget {
 
   void _onDeletePressed(BuildContext context) {
     final todoCubit = context.read<TodoCubit>();
-    todoCubit.deleteTodo(todo.id);
+    todoCubit.deleteTodo(todo.id!);
   }
 
   void _onCheckBoxChanged(BuildContext context, bool? value) {
     if (value == null) return;
 
     final todoCubit = context.read<TodoCubit>();
-    todoCubit.updateTodoStatus(todo.id, value);
+    todoCubit.updateTodoStatus(todo.id!, value);
   }
 }

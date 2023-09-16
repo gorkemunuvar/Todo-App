@@ -6,6 +6,6 @@ import '../domain.dart';
 abstract interface class ITodoRepository {
   Future<Either<Failure, List<Todo>>> getTodos();
   Future<Either<Failure, Success>> createTodo(Todo todo);
-  Future<Either<Failure, Success>> deleteTodo(String todoId);
-  Future<Either<Failure, Success>> updateTodoStatusUseCase(String id, bool isCompleted);
+  Future<Either<Failure, Success>> deleteTodo(int id);
+  Future<Either<Failure, Success>> updateTodoStatusUseCase(int id, bool isCompleted);
 }

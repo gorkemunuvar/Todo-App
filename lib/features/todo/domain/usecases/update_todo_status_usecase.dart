@@ -10,7 +10,7 @@ class UpdateTodoStatusUseCase {
 
   final ITodoRepository _repository;
 
-  Future<Either<Failure, Success>> call(String id, bool isCompleted) async {
+  Future<Either<Failure, Success>> call(int id, bool isCompleted) async {
     return _repository.updateTodoStatusUseCase(id, isCompleted);
   }
 }

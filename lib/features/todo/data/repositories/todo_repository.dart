@@ -40,9 +40,9 @@ class TodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<Either<Failure, Success>> deleteTodo(String todoId) async {
+  Future<Either<Failure, Success>> deleteTodo(int id) async {
     try {
-      _localSource.deleteTodo(todoId);
+      _localSource.deleteTodo(id);
 
       return const Right(Success());
     } catch (error) {
@@ -52,7 +52,7 @@ class TodoRepository implements ITodoRepository {
   }
 
   @override
-  Future<Either<Failure, Success>> updateTodoStatusUseCase(String id, bool isCompleted) async {
+  Future<Either<Failure, Success>> updateTodoStatusUseCase(int id, bool isCompleted) async {
     try {
       _localSource.updateTodoStatusUseCase(id, isCompleted);
 

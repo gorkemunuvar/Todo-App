@@ -24,7 +24,7 @@ import '../../features/todo/domain/usecases/update_todo_status_usecase.dart'
     as _i9;
 import '../../features/todo/presentation/cubit/todo_cubit.dart' as _i15;
 import '../../features/todo/todo.dart' as _i11;
-import '../storage/hive_client.dart' as _i3;
+import '../storage/objectbox_client.dart' as _i3;
 import '../storage/storage.dart' as _i4;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -38,7 +38,7 @@ _i1.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
-  gh.factory<_i3.IStorageClient>(() => _i4.HiveClient());
+  gh.factory<_i3.IStorageClient>(() => _i4.ObjectBoxClient());
   gh.factory<_i5.ITodosLocalSource>(
       () => _i5.TodosLocalSource(gh<_i3.IStorageClient>()));
   gh.factory<_i6.ITodoRepository>(

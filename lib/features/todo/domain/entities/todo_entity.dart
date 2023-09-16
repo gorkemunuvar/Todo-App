@@ -4,7 +4,7 @@ import '../../data/models/models.dart';
 
 class Todo extends Equatable {
   const Todo({
-    required this.id,
+    this.id,
     required this.title,
     required this.isCompleted,
   }) : assert(title != '', 'Title cannot be empty');
@@ -17,7 +17,7 @@ class Todo extends Equatable {
     );
   }
 
-  final String id;
+  final int? id;
   final String title;
   final bool isCompleted;
 
@@ -25,7 +25,7 @@ class Todo extends Equatable {
   List<Object?> get props => [id, title, isCompleted];
 
   Todo copyWith({
-    String? id,
+    int? id,
     String? title,
     bool? isCompleted,
   }) {

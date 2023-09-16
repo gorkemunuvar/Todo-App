@@ -42,7 +42,7 @@ class _View extends StatelessWidget {
     if (text.isEmpty) return;
 
     final todosCubit = context.read<TodoCubit>();
-    final newTodo = Todo(id: '1223', title: text, isCompleted: false);
+    final newTodo = Todo(title: text, isCompleted: false);
 
     todosCubit.createTodo(newTodo);
   }

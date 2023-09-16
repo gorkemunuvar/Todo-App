@@ -1,55 +1,46 @@
 import 'package:injectable/injectable.dart';
+import '../../../../core/app/init_helper.dart';
 
-import '../../../../core/storage/hive_client.dart';
+import '../../../../core/storage/objectbox_client.dart';
 import '../models/models.dart';
 
 abstract interface class ITodosLocalSource {
   Future<List<TodoModel>> getTodos();
   Future<void> createTodo(TodoModel todo);
-  Future<void> deleteTodo(String todoId);
-  Future<void> updateTodoStatusUseCase(String id, bool isCompleted);
+  Future<void> deleteTodo(int id);
+  Future<void> updateTodoStatusUseCase(int id, bool isCompleted);
 }
 
 @Injectable(as: ITodosLocalSource)
 class TodosLocalSource implements ITodosLocalSource {
-  const TodosLocalSource(this._storageClient);
+  TodosLocalSource(this._storageClient);
 
   final IStorageClient _storageClient;
 
+  final _box = objectBox.store.box<TodoModel>();
+
   @override
   Future<List<TodoModel>> getTodos() async {
-    return _mockTodos;
+    return _box.getAll();
   }
 
   @override
-  Future<void> createTodo(TodoModel todo) async {}
+  Future<void> createTodo(TodoModel todo) async {
+    _box.put(todo);
+  }
 
   @override
-  Future<void> deleteTodo(String todoId) async {}
+  Future<void> deleteTodo(int id) async {
+    _box.remove(id);
+  }
 
   @override
-  Future<void> updateTodoStatusUseCase(String id, bool isCompleted) async {}
+  Future<void> updateTodoStatusUseCase(int id, bool isCompleted) async {
+    final todo = _box.get(id);
+    if (todo != null) {
+      _box.remove(id);
+      final updatedTodo = todo.copyWith(isCompleted: isCompleted);
+      _box.put(updatedTodo);
+    }
+  }
 }
-
-const _mockTodos = [
-  TodoModel(
-    id: '1',
-    title: 'Todo 1',
-    isCompleted: false,
-  ),
-  TodoModel(
-    id: '2',
-    title: 'Todo 2',
-    isCompleted: false,
-  ),
-  TodoModel(
-    id: '3',
-    title: 'Todo 3',
-    isCompleted: true,
-  ),
-  TodoModel(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-];

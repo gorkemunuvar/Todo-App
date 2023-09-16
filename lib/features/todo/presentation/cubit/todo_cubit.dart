@@ -47,7 +47,7 @@ class TodoCubit extends Cubit<TodoState> {
     );
   }
 
-  Future<void> deleteTodo(String todoId) async {
+  Future<void> deleteTodo(int todoId) async {
     emit(state.copyWith(deletingStatus: TodoStateStatus.loading));
 
     final failureOrTodo = await _deleteTodoUseCase(todoId);
@@ -60,7 +60,7 @@ class TodoCubit extends Cubit<TodoState> {
     );
   }
 
-  Future<void> updateTodoStatus(String todoId, bool isCompleted) async {
+  Future<void> updateTodoStatus(int todoId, bool isCompleted) async {
     emit(state.copyWith(updatingStatus: TodoStateStatus.loading));
 
     final failureOrTodo = await _updateTodoUseCase(todoId, isCompleted);
