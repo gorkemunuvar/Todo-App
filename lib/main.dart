@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/app/app.dart';
+import 'core/app/app.dart';
+import 'core/app/init_helper.dart';
 
-void main() {
+void main() async {
+  await initDependencies();
   runApp(const TodoApp());
 }

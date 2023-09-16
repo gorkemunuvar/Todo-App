@@ -32,34 +32,4 @@ const _mockTodos = [
     title: 'Todo 4',
     isCompleted: false,
   ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
-  Todo(
-    id: '4',
-    title: 'Todo 4',
-    isCompleted: false,
-  ),
 ];

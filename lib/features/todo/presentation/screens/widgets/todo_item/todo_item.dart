@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../domain/domain.dart';
+import '../../../cubit/todo_cubit.dart';
 import 'check_box.dart';
 import 'delete_button.dart';
 
@@ -33,7 +35,7 @@ class TodoItem extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: CheckBox(
                   initialValue: todo.isCompleted,
-                  onChanged: (value) {},
+                  onChanged: (value) => _onCheckBoxChanged(context, value),
                 ),
               ),
               Expanded(
@@ -46,12 +48,24 @@ class TodoItem extends StatelessWidget {
                 ),
               ),
               DeleteButton(
-                onPressed: () {},
+                onPressed: () => _onDeletePressed(context),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _onDeletePressed(BuildContext context) {
+    final todoCubit = context.read<TodoCubit>();
+    todoCubit.deleteTodo(todo.id);
+  }
+
+  void _onCheckBoxChanged(BuildContext context, bool? value) {
+    if (value == null) return;
+
+    final todoCubit = context.read<TodoCubit>();
+    todoCubit.updateTodoStatus(todo.id, value);
   }
 }

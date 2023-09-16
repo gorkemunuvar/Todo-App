@@ -7,21 +7,16 @@ class TodoState extends Equatable {
     this.deletingStatus = TodoStateStatus.initial,
     this.updatingStatus = TodoStateStatus.initial,
     this.todos,
-    this.fethingFailure,
-    this.creatingFailure,
-    this.deletingFailure,
-    this.updatingFailure,
   });
 
-  final TodoStateStatus? fetchingStatus;
-  final TodoStateStatus? creatingStatus;
-  final TodoStateStatus? deletingStatus;
-  final TodoStateStatus? updatingStatus;
+  final TodoStateStatus fetchingStatus;
+  final TodoStateStatus creatingStatus;
+  final TodoStateStatus deletingStatus;
+  final TodoStateStatus updatingStatus;
   final List<Todo>? todos;
-  final Failure? fethingFailure;
-  final Failure? creatingFailure;
-  final Failure? deletingFailure;
-  final Failure? updatingFailure;
+
+  @override
+  List<Object?> get props => [fetchingStatus, creatingStatus, deletingStatus, updatingStatus, todos];
 
   TodoState copyWith({
     TodoStateStatus? fetchingStatus,
@@ -29,10 +24,6 @@ class TodoState extends Equatable {
     TodoStateStatus? deletingStatus,
     TodoStateStatus? updatingStatus,
     List<Todo>? todos,
-    Failure? fethingFailure,
-    Failure? creatingFailure,
-    Failure? deletingFailure,
-    Failure? updatingFailure,
   }) {
     return TodoState(
       fetchingStatus: fetchingStatus ?? this.fetchingStatus,
@@ -40,25 +31,8 @@ class TodoState extends Equatable {
       deletingStatus: deletingStatus ?? this.deletingStatus,
       updatingStatus: updatingStatus ?? this.updatingStatus,
       todos: todos ?? this.todos,
-      fethingFailure: fethingFailure ?? this.fethingFailure,
-      creatingFailure: creatingFailure ?? this.creatingFailure,
-      deletingFailure: deletingFailure ?? this.deletingFailure,
-      updatingFailure: updatingFailure ?? this.updatingFailure,
     );
   }
-
-  @override
-  List<Object?> get props => [
-        fetchingStatus,
-        creatingStatus,
-        deletingStatus,
-        updatingStatus,
-        todos,
-        fethingFailure,
-        creatingFailure,
-        deletingFailure,
-        updatingFailure,
-      ];
 }
 
 enum TodoStateStatus {

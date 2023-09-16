@@ -17,8 +17,8 @@ import '../../features/todo/domain/usecases/delete_todo_usecase.dart' as _i4;
 import '../../features/todo/domain/usecases/get_todos_usecase.dart' as _i5;
 import '../../features/todo/domain/usecases/update_todo_status_usecase.dart'
     as _i6;
-import '../../features/todo/domain/usecases/usecases.dart' as _i8;
 import '../../features/todo/presentation/cubit/todo_cubit.dart' as _i7;
+import '../../features/todo/todo.dart' as _i8;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 _i1.GetIt $initGetIt(
